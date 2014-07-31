@@ -1,0 +1,21 @@
+# CMake generation dependency list for this directory.
+G:/svn/git/OpenGL-tutorial_v0014_33/external/glfw-3.0.3/CMakeLists.txt
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/FindOpenGL.cmake
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/FindPackageHandleStandardArgs.cmake
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/FindPackageMessage.cmake
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/CMakeParseArguments.cmake
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/FindThreads.cmake
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/CheckIncludeFiles.cmake
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/CheckLibraryExists.cmake
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/CheckSymbolExists.cmake
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/FindPackageHandleStandardArgs.cmake
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/FindPackageMessage.cmake
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/CMakeParseArguments.cmake
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/FindDoxygen.cmake
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/FindPackageHandleStandardArgs.cmake
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/FindPackageMessage.cmake
+G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/CMakeParseArguments.cmake
+G:/svn/git/OpenGL-tutorial_v0014_33/external/glfw-3.0.3/docs/Doxyfile.in
+G:/svn/git/OpenGL-tutorial_v0014_33/external/glfw-3.0.3/src/config.h.in
+G:/svn/git/OpenGL-tutorial_v0014_33/external/glfw-3.0.3/src/glfwConfig.cmake.in
+G:/svn/git/OpenGL-tutorial_v0014_33/external/glfw-3.0.3/src/glfwConfigVersion.cmake.in

@@ -1,6 +1,0 @@
-# CMake generation dependency list for this directory.
-G:/svn/git/OpenGL-tutorial_v0014_33/external/CMakeLists.txt
-G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/CheckIncludeFile.cmake
-G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/CheckTypeSize.cmake
-G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/CheckIncludeFile.cmake
-G:/tools/cmake-3.0.0-win32-x86/share/cmake-3.0/Modules/CheckFunctionExists.cmake
