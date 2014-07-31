@@ -34,7 +34,7 @@ In hindsight, I should have wrapped OpenGL in a class to keep the main loop tidy
 
 For parsing my INI file, I wrote a very simple line-by-line text reader. I felt that a single function was sufficient for this task, and writing a class around it seemed like overkill.
 
-I included vld.h during production, and by the of the project, I am happy to report there are no memory leaks.
+I included vld.h during production, and by the of the project, I am happy to report there are no memory leaks. I built the project in Visual Studio 2012.
 
 Known Issues
 -I am aware that some shapes and movement patterns may display a long trailing tail that goes off into the distance. I am unsure about the cause, my guess is that OpenGL is adding a vector to my buffer that points to some arbitrary coordinate.
