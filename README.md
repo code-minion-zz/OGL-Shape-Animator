@@ -33,7 +33,7 @@ In order to change the shape at runtime, press 'Enter'. The shape config file wi
 
 ##Development Notes
 
-I decided to learn OpenGL for this test... DirectX and GDI did not seem appropriate. I found a tutorial with some samples to quickly get a running window, as well as see how standard graphics tasks like shader-binding and putting data into buffers works. 
+I decided to learn OpenGL for this test for it's cross-platform capabilities. Knowing that PikPok works in the Mobile and Console Gaming space, DirectX and GDI did not seem appropriate. I found a tutorial with some samples to quickly get a running window, as well as see how standard graphics tasks like shader-binding and putting data into buffers works. 
 
 I did try to create my own clean project after that, but being out of practice with C++ and Visual Studio, I ran into a lot of linker errors that I just couldn't figure out. I decided to just write my code on top of a working openGL sample project instead, so I could better spend time finishing all the required features.
 
