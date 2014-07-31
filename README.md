@@ -31,7 +31,7 @@ All characters must be lower case.
 
 In order to change the shape at runtime, press 'Enter'. The shape config file will be read and the new shape will be deployed.
 
-Development Notes
+##Development Notes
 
 I decided to learn OpenGL for this test... DirectX and GDI did not seem appropriate. I found a tutorial with some samples to quickly get a running window, as well as see how standard graphics tasks like shader-binding and putting data into buffers works. 
 
@@ -43,9 +43,9 @@ In hindsight, I should have wrapped OpenGL in a class to keep the main loop tidy
 
 For parsing my INI file, I wrote a very simple line-by-line text reader. I felt that a single function was sufficient for this task, and writing a class around it seemed like overkill.
 
-I included vld.h during production, and by the of the project, I am happy to report there are no memory leaks.
+I included vld.h during production, and by the of the project, I am happy to report there are no memory leaks. It is worth noting that this is a visual studio 2012 project. I have heard that it might not be backwards compatible, but I'm not sure how to fix that.
 
-Known Issues
+##Known Issues
 * I am aware that some shapes and movement patterns may display a long trailing tail that goes off into the distance. I am unsure about the cause, my guess is that OpenGL is adding a vector to my buffer that points to some arbitrary coordinate.
 * I am also aware that random objects can appear in the window, I have seen green and blue triangles before. My best guess is that garbage data is being used somewhere, although I haven't found it.
 * The application may arbitrarily 'pause' for about a second sometimes. I haven't tested this on other computers, and I have exhaustively tried to find out why to no avail.
