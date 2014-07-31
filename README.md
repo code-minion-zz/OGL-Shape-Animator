@@ -6,6 +6,7 @@ In order to run successfully, the following files need to be in the same folder:
 * playground.exe
 * SimpleVertexShader.vertexshader
 * SimpleFragmentShader.fragmentshader
+
 Additionally, the Shape Config file : 'shape.ini' should be present if you wish to change the shape.
 
 The Shape Configuration file has a rigid format that must be followed. Here is a sample config :
