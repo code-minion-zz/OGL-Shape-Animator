@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <vector>
 #include <math.h>
 #include <GL/glew.h>
 #include <vld.h>
@@ -11,26 +10,24 @@ GLFWwindow* window;
 #include <glm/gtc/matrix_transform.hpp>
 using namespace glm;
 
+#include <common\iniparser.hpp>
 #include <common\shader.hpp>
 #include "Shape.h"
 #include "Square.h"
 #include "Circle.h"
 #include "Triangle.h"
 #include "Hexagon.h"
-#include <common\iniparser.hpp>
-
-const float Deg2Rad = 0.0174532925f;
 
 void PrepareColorBuffer(GLuint colorbuffer);
 void PrepareVertexBuffer(GLuint vertexbuffer);
-void FillCircleVerts(float radius);
-void FillHexagonVerts(float size);
-void FillTriangleVerts(float size);
-void FillSquareVerts(float size);
+//void FillCircleVerts(float radius);
+//void FillHexagonVerts(float size);
+//void FillTriangleVerts(float size);
+//void FillSquareVerts(float size);
 
 // Define the vertices to draw
-GLfloat g_vertex_buffer_data[240];
-int vertcount = 0;
+//GLfloat g_vertex_buffer_data[240];
+//int vertcount = 0;
 
 double lastTime = 0;
 bool loadedINIrecently = false;
@@ -71,7 +68,7 @@ int main( void )
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
-	// Dark blue background
+	// Background clear color
 	//glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 	
 	// Create and compile our GLSL program from the shaders
@@ -80,28 +77,6 @@ int main( void )
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
-	//// Get a handle for our "MVP" uniform
-	//GLuint MatrixID = glGetUniformLocation(programID, "MVP");
-
-	//// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-	//glm::mat4 Projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
-	//// Or, for an ortho camera :
-	////glm::mat4 Projection = glm::ortho(-10.0f,10.0f,-10.0f,10.0f,0.0f,100.0f); // In world coordinates
-	//
-	//// Camera matrix
-	//glm::mat4 View       = glm::lookAt(
-	//							glm::vec3(4,3,3), // Camera is at (4,3,3), in World Space
-	//							glm::vec3(0,0,0), // and looks at the origin
-	//							glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
-	//					   );
-	//// Model matrix : an identity matrix (model will be at the origin)
-	//glm::mat4 Model      = glm::mat4(1.0f);
-	//// Our ModelViewProjection : multiplication of our 3 matrices
-	//glm::mat4 MVP        = Projection * View * Model; // Remember, matrix multiplication is the other way around
-
-	//FillCircleVerts(0.5f); 
-	//FillSquareVerts(.9f);
-	//printf("Number of verts %d", vertcount);
 	currentShape = new CSquare();
 	currentShape->Initialize(Red,.8f, Circular, 0.6f);
 	// Buffer identifier
@@ -109,10 +84,8 @@ int main( void )
 	GLuint colorbuffer;
 	glGenBuffers(1, &vertexbuffer);
 	glGenBuffers(1, &colorbuffer);
-	// Define the 'type' of this buffer
-	//glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	// Send our vertices to GL
 
+	// Send our vertices to GL
 	do{		
 		double currentTime = glfwGetTime();
 		float deltaTime = float(currentTime - lastTime);
@@ -174,11 +147,6 @@ int main( void )
 			}
 		}
 
-		// Send our transformation to the currently bound shader, 
-		// in the "MVP" uniform
-		//glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-
-		 
 		// Draw our shape
 		if (currentShape != 0)
 		{	
@@ -205,75 +173,6 @@ int main( void )
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
 	return 0;
-}
-
-// Below this line are all prototype functions i made just to learn GL
-// I would later replace them with classes
-void FillCircleVerts(float radius)
-{
-	vertcount = 0;
-	int verts = 32;
-	float fAngleInc = (6.28318530718f / static_cast<float>(verts));
- 
-	for(int i = 0; i < verts; ++i)
-	{
-		float fAngle = fAngleInc * i;
-  
-		g_vertex_buffer_data[vertcount++] = cos(fAngle) * radius;
-		printf("%f",g_vertex_buffer_data[(vertcount-1)]);
-		g_vertex_buffer_data[vertcount++] = sin(fAngle) * radius;
-		printf("%f",g_vertex_buffer_data[(vertcount-1)]);
-		g_vertex_buffer_data[vertcount++] = 0;
-	}
-}
-
-void FillHexagonVerts(float size)
-{
-	vertcount = 0;
-	int verts = 6;
-	float fAngleInc = (6.28318530718f / static_cast<float>(verts));
- 
-	for(int i = 0; i < verts; ++i)
-	{
-		float fAngle = fAngleInc * i;
-  
-		g_vertex_buffer_data[vertcount++] = cos(fAngle) * size;
-		printf("%f",g_vertex_buffer_data[(vertcount-1)]);
-		g_vertex_buffer_data[vertcount++] = sin(fAngle) * size;
-		printf("%f",g_vertex_buffer_data[(vertcount-1)]);
-		g_vertex_buffer_data[vertcount++] = 0;
-	}
-}
-
-void FillTriangleVerts(float size)
-{
-	g_vertex_buffer_data[0] = -1.0f * size;
-	g_vertex_buffer_data[1] = -1.0f * size;
-	g_vertex_buffer_data[2] = 0.0f * size;
-	g_vertex_buffer_data[3] = 1.0f * size;
-	g_vertex_buffer_data[4] = -1.0f * size;
-	g_vertex_buffer_data[5] = 0.0f * size;
-	g_vertex_buffer_data[6] = 0.0f * size;
-	g_vertex_buffer_data[7] = 1.0f * size;
-	g_vertex_buffer_data[8] = 1.0f * size;
-	vertcount = 9;
-}
-
-void FillSquareVerts(float size)
-{
-	g_vertex_buffer_data[0] = -1.0f * size;
-	g_vertex_buffer_data[1] = -1.0f * size;
-	g_vertex_buffer_data[2] = 0.0f * size;
-	g_vertex_buffer_data[3] = 1.0f * size;
-	g_vertex_buffer_data[4] = -1.0f * size;
-	g_vertex_buffer_data[5] = 0.0f * size;
-	g_vertex_buffer_data[6] = 1.0f * size;
-	g_vertex_buffer_data[7] = 1.0f * size;
-	g_vertex_buffer_data[8] = 0.0f * size;
-	g_vertex_buffer_data[9] = -1.0f * size;
-	g_vertex_buffer_data[10] = 1.0f * size;
-	g_vertex_buffer_data[11] = 0.0f * size;
-	vertcount = 12;
 }
 
 void PrepareVertexBuffer(GLuint vertexbuffer)
@@ -305,3 +204,73 @@ void PrepareColorBuffer(GLuint colorbuffer)
 		(void*)0            // array buffer offset
 	);
 }
+
+// Below this line are all prototype functions i made just to learn GL
+// I would later replace them with classes
+
+//void FillCircleVerts(float radius)
+//{
+//	vertcount = 0;
+//	int verts = 32;
+//	float fAngleInc = (6.28318530718f / static_cast<float>(verts));
+// 
+//	for(int i = 0; i < verts; ++i)
+//	{
+//		float fAngle = fAngleInc * i;
+//  
+//		g_vertex_buffer_data[vertcount++] = cos(fAngle) * radius;
+//		printf("%f",g_vertex_buffer_data[(vertcount-1)]);
+//		g_vertex_buffer_data[vertcount++] = sin(fAngle) * radius;
+//		printf("%f",g_vertex_buffer_data[(vertcount-1)]);
+//		g_vertex_buffer_data[vertcount++] = 0;
+//	}
+//}
+//
+//void FillHexagonVerts(float size)
+//{
+//	vertcount = 0;
+//	int verts = 6;
+//	float fAngleInc = (6.28318530718f / static_cast<float>(verts));
+// 
+//	for(int i = 0; i < verts; ++i)
+//	{
+//		float fAngle = fAngleInc * i;
+//  
+//		g_vertex_buffer_data[vertcount++] = cos(fAngle) * size;
+//		printf("%f",g_vertex_buffer_data[(vertcount-1)]);
+//		g_vertex_buffer_data[vertcount++] = sin(fAngle) * size;
+//		printf("%f",g_vertex_buffer_data[(vertcount-1)]);
+//		g_vertex_buffer_data[vertcount++] = 0;
+//	}
+//}
+//
+//void FillTriangleVerts(float size)
+//{
+//	g_vertex_buffer_data[0] = -1.0f * size;
+//	g_vertex_buffer_data[1] = -1.0f * size;
+//	g_vertex_buffer_data[2] = 0.0f * size;
+//	g_vertex_buffer_data[3] = 1.0f * size;
+//	g_vertex_buffer_data[4] = -1.0f * size;
+//	g_vertex_buffer_data[5] = 0.0f * size;
+//	g_vertex_buffer_data[6] = 0.0f * size;
+//	g_vertex_buffer_data[7] = 1.0f * size;
+//	g_vertex_buffer_data[8] = 1.0f * size;
+//	vertcount = 9;
+//}
+//
+//void FillSquareVerts(float size)
+//{
+//	g_vertex_buffer_data[0] = -1.0f * size;
+//	g_vertex_buffer_data[1] = -1.0f * size;
+//	g_vertex_buffer_data[2] = 0.0f * size;
+//	g_vertex_buffer_data[3] = 1.0f * size;
+//	g_vertex_buffer_data[4] = -1.0f * size;
+//	g_vertex_buffer_data[5] = 0.0f * size;
+//	g_vertex_buffer_data[6] = 1.0f * size;
+//	g_vertex_buffer_data[7] = 1.0f * size;
+//	g_vertex_buffer_data[8] = 0.0f * size;
+//	g_vertex_buffer_data[9] = -1.0f * size;
+//	g_vertex_buffer_data[10] = 1.0f * size;
+//	g_vertex_buffer_data[11] = 0.0f * size;
+//	vertcount = 12;
+//}

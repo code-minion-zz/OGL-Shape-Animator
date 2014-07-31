@@ -1,24 +1,10 @@
-#include <vector>
 #include <stdio.h>
 #include <string>
-#include <iostream>
-#include <locale>
 #include <cstring>
 
 #include <glm/glm.hpp>
 
-#include "../playground/Shape.h"
 #include "iniparser.hpp"
-
-// Very, VERY simple OBJ loader.
-// Here is a short list of features a real function would provide : 
-// - Binary files. Reading a model should be just a few memcpy's away, not parsing a file at runtime. In short : OBJ is not very great.
-// - Animations & bones (includes bones weights)
-// - Multiple UVs
-// - All attributes should be optional, not "forced"
-// - More stable. Change a line in the OBJ file and it crashes.
-// - More secure. Change another line and you can inject code.
-// - Loading from memory, stream, etc
 
 bool loadINI(
 	const char * path,
@@ -32,7 +18,7 @@ bool loadINI(
 
 	FILE * file = fopen(path, "r");
 	if( file == NULL ){
-		printf("Impossible to open the file ! Are you in the right path ? See Tutorial 1 for details\n");
+		printf("Impossible to open the file ! Are you in the right path ?\n");
 		getchar();
 		return false;
 	}
@@ -44,24 +30,18 @@ bool loadINI(
 		int res = fscanf(file, "%s", lineHeader);
 		if (res == EOF)
 			break; // EOF = End Of File. Quit the loop.
-
-		// else : parse lineHeader
 		
 		if ( strcmp( lineHeader, "shape" ) == 0 ){
 			char shape[128];
 			fscanf(file, "%s\r\n", &shape);			
 
 			if ( strcmp( shape, "square" ) == 0 ){
-				// create a square
 				_shape = Square;
 			} else if ( strcmp( shape, "triangle" ) == 0 ){
-				// create a triangle
 				_shape = Triangle;
 			} else if ( strcmp( shape, "circle" ) == 0 ){
-				// create a circle
 				_shape = Circle;
 			} else if ( strcmp( shape, "hexagon" ) == 0 ){
-				// create a hexagon
 				_shape = Hexagon;
 			}
 		}else if ( strcmp( lineHeader, "size" ) == 0 ){
@@ -75,16 +55,12 @@ bool loadINI(
 			fscanf(file, "%s\r\n", &color);
 			
 			if ( strcmp( color, "red" ) == 0 ){
-				// create a square
 				_color = Red;
 			} else if ( strcmp( color, "blue" ) == 0 ){
-				// create a triangle
 				_color = Blue;
 			} else if ( strcmp( color, "green" ) == 0 ){
-				// create a circle
 				_color = Green;
 			} else if ( strcmp( color, "yellow" ) == 0 ){
-				// create a hexagon
 				_color = Yellow;
 			}
 		}else if ( strcmp( lineHeader, "movement" ) == 0 ){
@@ -92,16 +68,12 @@ bool loadINI(
 			fscanf(file, "%s\r\n", &movement);
 
 			if ( strcmp( movement, "vertical" ) == 0 ){
-				// create a square
 				_movement = Vertical;
 			} else if ( strcmp( movement, "horizontal" ) == 0 ){
-				// create a triangle
 				_movement = Horizontal;
 			} else if ( strcmp( movement, "circular" ) == 0 ){
-				// create a circle
 				_movement = Circular;
 			} else if ( strcmp( movement, "box" ) == 0 ){
-				// create a hexagon
 				_movement = Box;
 			}
 			else
