@@ -98,7 +98,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">G:\svn\git\OGL-Shape-Animator\OpenGL-tutorial_v0014_33\CMAKED\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">playground.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">playground</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">playground</TargetName>
@@ -172,23 +172,16 @@
     <PostBuildEvent>
       <Message>
       </Message>
-      <Command>setlocal
-G:\tools\cmake-3.0.0-win32-x86\bin\cmake.exe -E copy G:/svn/git/OpenGL-tutorial_v0014_33/CMAKED/$(Configuration)/playground.exe G:/svn/git/OpenGL-tutorial_v0014_33/playground/
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <Link>
       <AdditionalOptions> /machine:x64 /debug %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;glu32.lib;opengl32.lib;external\glfw-3.0.3\src\Debug\glfw3.lib;external\Debug\GLEW_190.lib;glu32.lib;opengl32.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;glu32.lib;opengl32.lib;$(SolutionDir)external\glfw-3.0.3\src\Debug\glfw3.lib;$(SolutionDir)external\Debug\GLEW_190.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ImportLibrary>G:/svn/git/OpenGL-tutorial_v0014_33/CMAKED/Debug/playground.lib</ImportLibrary>
-      <ProgramDataBaseFile>G:/svn/git/OpenGL-tutorial_v0014_33/CMAKED/Debug/playground.pdb</ProgramDataBaseFile>
+      <ImportLibrary>$(SolutionDir)Debug/playground.lib</ImportLibrary>
+      <ProgramDataBaseFile>$(SolutionDir)Debug/playground.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
       <Version>
       </Version>
