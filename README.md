@@ -11,11 +11,16 @@ Additionally, the Shape Config file : 'shape.ini' should be present if you wish 
 The Shape Configuration file has a rigid format that must be followed. Here is a sample config :
 
 >shape square
+
 >size 0.8
+
 >color red
+
 >movement vertical
+
 >speed 0.4
 
+To explain each line :
 * shape - accepts the strings 'square', 'triangle', 'circle' and 'hexagon'.
 * size - accepts a scalar value. 1.0 sets the scale to the height of the window, larger than that will make the shape larger than the window.
 * color - accepts the strings 'red', 'blue', 'green', 'yellow'
